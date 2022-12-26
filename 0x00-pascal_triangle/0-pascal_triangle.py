@@ -4,7 +4,7 @@ contains the Pascal's triangle function
 """
 
 
-def pascal_psclTrgle(n):
+def pascal_triangle(n):
     """
     returns pascal triangle
     """
