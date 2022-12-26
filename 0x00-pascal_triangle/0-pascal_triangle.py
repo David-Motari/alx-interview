@@ -21,4 +21,3 @@ def pascal_psclTrgle(n):
         psclTrgle.append(row)
 
     return psclTrgle
-    
