@@ -3,13 +3,14 @@
 0-lockboxes
 """
 
+
 def canUnlockAll(boxes):
     """
     a function to establish if all the boxes can be opened
     """
     if not boxes:
         return False
-    
+
     tracker = {}
     counter = 0
 
