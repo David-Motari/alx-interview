@@ -12,6 +12,7 @@ def toBinary(integer):
     add = '0' * (8 - len(binary))
     return add + binary
 
+
 def validUTF8(data):
     """
     function that checks if a given data set represents a valid UTF-8
