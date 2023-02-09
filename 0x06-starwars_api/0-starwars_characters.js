@@ -1,29 +1,36 @@
 #!/usr/bin/node
 
-// Starwars API
+function findCharacter (index, url, characters, bound) {
+  if (index === bound) {
+    return;
+  }
+  request(url, function (error, response, body) {
+    if (!error) {
+      const character = JSON.parse(body);
+      console.log(character.name);
+      index++;
+      findCharacter(index, characters[index], characters, bound);
+    } else {
+      console.error('error:', error);
+    }
+  });
+}
+
 const argv = process.argv;
+
 const request = require('request');
-request(`https://swapi-api.alx-tools.com/api/films/${argv[2]}`,
+
+request(`https://swapi-api.hbtn.io/api/films/${argv[2]}`,
   function (error, response, body) {
-    if (error == null) {
+    if (!error) {
       const filmBody = JSON.parse(body);
       const characters = filmBody.characters;
-      //    console.log(characters);
-      if (characters && characters.length > 0) {
-        let charUrl = '';
-        let i = 0;
-        for (i; i < characters.length; i++) {
-          charUrl = characters[i];
-          request(charUrl, function (error, response, body) {
-            if (error == null) {
-              const characDetail = JSON.parse(body);
-              const characName = characDetail.name;
-              console.log(characName);
-            } else {
-              console.log(error);
-            }
-          });
-        }
+
+      if (characters !== null && characters.length > 0) {
+        const bound = characters.length;
+        findCharacter(0, characters[0], characters, bound);
       }
-    } else { console.log('error: ', error); }
+    } else {
+      console.log(error);
+    }
   });
